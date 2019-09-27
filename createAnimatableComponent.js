@@ -306,19 +306,24 @@ export default function createAnimatableComponent(WrappedComponent) {
         delay,
         onAnimationBegin,
         iterationDelay,
+        noAnimateOnMount,
       } = this.props;
       if (animation) {
-        const startAnimation = () => {
-          onAnimationBegin();
-          this.startAnimation(duration, 0, iterationDelay, endState =>
-            this.props.onAnimationEnd(endState),
-          );
-          this.delayTimer = null;
-        };
-        if (delay) {
-          this.delayTimer = setTimeout(startAnimation, delay);
+        if (noAnimateOnMount) {
+          this.startAnimation(0, 0);
         } else {
-          startAnimation();
+          const startAnimation = () => {
+            onAnimationBegin();
+            this.startAnimation(duration, 0, iterationDelay, endState =>
+              this.props.onAnimationEnd(endState),
+            );
+            this.delayTimer = null;
+          };
+          if (delay) {
+            this.delayTimer = setTimeout(startAnimation, delay);
+          } else {
+            startAnimation();
+          }
         }
       }
     }

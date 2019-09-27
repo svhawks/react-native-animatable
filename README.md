@@ -68,6 +68,7 @@ You can create your own simple transitions of a style property of your own choos
 |**`onTransitionBegin`**|A function that is called when the transition of a style has been started. The function is called with a `property` argument to differentiate between styles. |*None*|
 |**`onTransitionEnd`**|A function that is called when the transition of a style has been completed successfully or cancelled. The function is called with a `property` argument to differentiate between styles. |*None*|
 |**`useNativeDriver`**|Whether to use native or JavaScript animation driver. Native driver can help with performance but cannot handle all types of styling.  |`false`|
+|**`noAnimateOnMount`**|Whether to not animate the component when it mounts. Component will be animated only when it receives new props.  |`false`|
 
 ### Imperative Usage
 
